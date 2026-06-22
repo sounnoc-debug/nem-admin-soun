@@ -1,0 +1,197 @@
+:root {
+  --bg: #FBF3E7;          /* nền màu bánh tráng */
+  --paper: #FFFFFF;
+  --ink: #2B1B12;          /* chữ nâu đậm */
+  --chili: #C5391E;        /* đỏ ớt chấm nem */
+  --chili-dark: #9C2C16;
+  --herb: #4B6B43;         /* xanh lá chuối/rau thơm */
+  --herb-light: #7C9B6E;
+  --line: #E4D6C2;
+  --warn: #C5391E;
+  --ok: #4B6B43;
+  --pending: #B6862C;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  letter-spacing: -0.01em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: var(--ink);
+  color: #F3E9DC;
+  padding: 24px 16px;
+  flex-shrink: 0;
+}
+
+.sidebar .brand {
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #E8D9C4;
+  transition: background 0.15s;
+}
+
+.sidebar nav a:hover, .sidebar nav a.active {
+  background: var(--chili);
+  color: white;
+}
+
+.main {
+  flex: 1;
+  padding: 32px 40px;
+  max-width: 1200px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.stat-card .label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8A7158;
+}
+
+.stat-card .value {
+  font-family: 'Georgia', serif;
+  font-size: 28px;
+  margin-top: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8A7158;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.btn {
+  background: var(--chili);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn:hover { background: var(--chili-dark); }
+
+.btn.secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+input, select, textarea {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 100%;
+  background: white;
+  color: var(--ink);
+}
+
+/* "Vé gói nem" – status badge lấy cảm hứng từ tem dán đơn hàng */
+.ticket-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-pending { background: #FBE9CF; color: var(--pending); }
+.status-cooking { background: #FDE3D8; color: var(--chili-dark); }
+.status-delivering { background: #E2EAE0; color: var(--herb); }
+.status-done { background: #DCEBDA; color: var(--herb); }
+.status-cancelled { background: #F0E0DC; color: #8A7158; }
+
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.login-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 40px;
+  width: 360px;
+}
+
+.error-text { color: var(--chili); font-size: 13px; margin-top: 8px; }
