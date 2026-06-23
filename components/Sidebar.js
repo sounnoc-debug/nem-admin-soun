@@ -1,5 +1,6 @@
 'use client'
 import { usePathname, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 
 const LINKS = [
@@ -12,6 +13,28 @@ const LINKS = [
 export default function Sidebar() {
   const pathname = usePathname()
   const router = useRouter()
+
+  useEffect(() => {
+    guardAccess()
+  }, [])
+
+  async function guardAccess() {
+    const { data } = await supabase.auth.getSession()
+    if (!data.session) {
+      router.replace('/login')
+      return
+    }
+    const { data: profile } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', data.session.user.id)
+      .single()
+    const allowedRoles = ['admin', 'staff', 'kitchen', 'shipper']
+    if (!profile || !allowedRoles.includes(profile.role)) {
+      await supabase.auth.signOut()
+      router.replace('/login')
+    }
+  }
 
   async function handleLogout() {
     await supabase.auth.signOut()
