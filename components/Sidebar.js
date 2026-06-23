@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabaseClient'
 const LINKS = [
   { href: '/dashboard', label: '📊 Tổng quan' },
   { href: '/products', label: '🍤 Sản phẩm' },
+  { href: '/categories', label: '🖼️ Danh mục (ảnh bìa)' },
   { href: '/orders', label: '🧾 Đơn hàng' },
   { href: '/vouchers', label: '🎁 Voucher' },
 ]
