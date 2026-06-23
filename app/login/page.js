@@ -43,7 +43,7 @@ export default function LoginPage() {
   return (
     <div className="login-wrap">
       <div className="login-box">
-        <h1 style={{ fontSize: 22, marginBottom: 4 }}>🌿 Nem Admin</h1>
+        <img src="/logo.png" alt="Logo" style={{ height: 36, marginBottom: 8 }} />
         <p style={{ fontSize: 13, color: '#8A7158', marginBottom: 24 }}>
           Đăng nhập để quản lý quán
         </p>

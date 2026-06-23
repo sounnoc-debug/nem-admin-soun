@@ -44,7 +44,7 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <div className="brand">🌿 Nem Admin</div>
+      <div className="brand"><img src="/logo.png" alt="Logo" style={{ height: 28 }} /></div>
       <nav>
         {LINKS.map((l) => (
           <a key={l.href} href={l.href} className={pathname === l.href ? 'active' : ''}>
