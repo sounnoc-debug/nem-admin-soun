@@ -1,12 +1,12 @@
 :root {
-  --bg: #FBF3E7;          /* nền màu bánh tráng */
+  --bg: #F3EAD8;          /* be */
   --paper: #FFFFFF;
   --ink: #2B1B12;          /* chữ nâu đậm */
-  --chili: #C5391E;        /* đỏ ớt chấm nem */
-  --chili-dark: #9C2C16;
-  --herb: #4B6B43;         /* xanh lá chuối/rau thơm */
-  --herb-light: #7C9B6E;
-  --line: #E4D6C2;
+  --chili: #7A2331;        /* đỏ đô */
+  --chili-dark: #591620;
+  --herb: #2F6B3D;         /* xanh lục */
+  --herb-light: #5C9468;
+  --line: #DCC9A8;
   --warn: #C5391E;
   --ok: #4B6B43;
   --pending: #B6862C;
