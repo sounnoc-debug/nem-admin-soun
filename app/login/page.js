@@ -14,12 +14,29 @@ export default function LoginPage() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    setLoading(false)
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
+      setLoading(false)
       setError('Sai email hoặc mật khẩu. Vui lòng thử lại.')
       return
     }
+
+    // ★ Kiểm tra role admin — chỉ role admin/staff/kitchen/shipper mới vào được trang quản trị
+    const { data: profile, error: profileErr } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', data.user.id)
+      .single()
+
+    const allowedRoles = ['admin', 'staff', 'kitchen', 'shipper']
+    if (profileErr || !profile || !allowedRoles.includes(profile.role)) {
+      await supabase.auth.signOut()
+      setLoading(false)
+      setError('Tài khoản này không có quyền truy cập trang quản trị.')
+      return
+    }
+
+    setLoading(false)
     router.replace('/dashboard')
   }
 
