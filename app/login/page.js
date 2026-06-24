@@ -47,7 +47,7 @@ export default function LoginPage() {
         <p style={{ fontSize: 13, color: '#8A7158', marginBottom: 24 }}>
           Đăng nhập để quản lý quán
         </p>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} style={{ textAlign: 'left' }}>
           <div style={{ marginBottom: 14 }}>
             <label style={{ fontSize: 13, display: 'block', marginBottom: 6 }}>Email</label>
             <input

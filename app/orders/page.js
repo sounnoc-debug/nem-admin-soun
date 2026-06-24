@@ -29,7 +29,10 @@ export default function OrdersPage() {
   }
 
   const fmt = (n) => Number(n || 0).toLocaleString('vi-VN') + 'đ'
-  const visible = filter === 'all' ? orders : orders.filter((o) => o.status === filter)
+  const visible = filter === 'all'
+    ? orders.filter((o) => o.status !== 'done')   // ★ Đơn hoàn thành tự ẩn khỏi danh sách chính
+    : orders.filter((o) => o.status === filter)
+  const doneCount = orders.filter((o) => o.status === 'done').length
 
   return (
     <div className="app-shell">
@@ -39,14 +42,17 @@ export default function OrdersPage() {
           <h1 style={{ fontSize: 26 }}>Đơn hàng</h1>
         </div>
 
-        <div style={{ marginBottom: 16, display: 'flex', gap: 8 }}>
-          <button className={`btn ${filter === 'all' ? '' : 'secondary'}`} onClick={() => setFilter('all')}>Tất cả</button>
+        <div style={{ marginBottom: 8, display: 'flex', gap: 8 }}>
+          <button className={`btn ${filter === 'all' ? '' : 'secondary'}`} onClick={() => setFilter('all')}>Đang xử lý</button>
           {STATUSES.map((s) => (
             <button key={s.value} className={`btn ${filter === s.value ? '' : 'secondary'}`} onClick={() => setFilter(s.value)}>
-              {s.label}
+              {s.label}{s.value === 'done' && doneCount > 0 ? ` (${doneCount})` : ''}
             </button>
           ))}
         </div>
+        <p style={{ fontSize: 12, color: '#8A7158', marginBottom: 16 }}>
+          ★ Đơn "Hoàn tất" tự ẩn khỏi danh sách chính cho gọn — xem lại bằng nút "Hoàn tất" ở trên.
+        </p>
 
         <div className="card">
           <table>
