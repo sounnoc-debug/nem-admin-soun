@@ -66,15 +66,16 @@ export default function VouchersPage() {
 
         <div className="card">
           <table>
-            <thead><tr><th>Mã</th><th>Loại</th><th>Giá trị</th><th>Hết hạn</th><th></th></tr></thead>
+            <thead><tr><th>Mã</th><th>Loại</th><th>Giá trị</th><th>Hết hạn</th><th>Phạm vi</th><th></th></tr></thead>
             <tbody>
-              {vouchers.length === 0 && <tr><td colSpan={5} style={{ color: '#8A7158' }}>Chưa có voucher nào.</td></tr>}
+              {vouchers.length === 0 && <tr><td colSpan={6} style={{ color: '#8A7158' }}>Chưa có voucher nào.</td></tr>}
               {vouchers.map((v) => (
                 <tr key={v.id}>
                   <td><strong>{v.code}</strong></td>
                   <td>{v.discount_type === 'percent' ? 'Phần trăm' : 'Số tiền'}</td>
                   <td>{v.discount_type === 'percent' ? `${v.discount_value}%` : `${Number(v.discount_value).toLocaleString('vi-VN')}đ`}</td>
                   <td>{v.expired_at ? new Date(v.expired_at).toLocaleDateString('vi-VN') : '—'}</td>
+                  <td>{v.is_personal ? <span className="ticket-status status-pending">🔒 Cá nhân</span> : <span className="ticket-status status-done">🌐 Công khai</span>}</td>
                   <td><a onClick={() => handleDelete(v.id)} style={{ cursor: 'pointer', color: 'var(--chili)' }}>Xóa</a></td>
                 </tr>
               ))}
