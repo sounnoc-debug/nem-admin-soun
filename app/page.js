@@ -27,7 +27,9 @@ export default function Home() {
       router.replace('/login')
       return
     }
-    router.replace('/dashboard')
+    if (profile.role === 'kitchen') router.replace('/kitchen')
+    else if (profile.role === 'shipper') router.replace('/shipper')
+    else router.replace('/dashboard')
   }
   return null
 }

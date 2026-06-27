@@ -32,8 +32,10 @@ export default function Sidebar() {
       .select('role')
       .eq('id', data.session.user.id)
       .single()
-    const allowedRoles = ['admin', 'staff', 'kitchen', 'shipper']
+    const allowedRoles = ['admin', 'staff']
     if (!profile || !allowedRoles.includes(profile.role)) {
+      if (profile?.role === 'kitchen') { router.replace('/kitchen'); return }
+      if (profile?.role === 'shipper') { router.replace('/shipper'); return }
       await supabase.auth.signOut()
       router.replace('/login')
     }

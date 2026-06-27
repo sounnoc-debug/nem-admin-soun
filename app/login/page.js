@@ -37,7 +37,9 @@ export default function LoginPage() {
     }
 
     setLoading(false)
-    router.replace('/dashboard')
+    if (profile.role === 'kitchen') router.replace('/kitchen')
+    else if (profile.role === 'shipper') router.replace('/shipper')
+    else router.replace('/dashboard')
   }
 
   return (
